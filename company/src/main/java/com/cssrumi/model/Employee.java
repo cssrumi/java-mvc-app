@@ -1,5 +1,6 @@
 package com.cssrumi.model;
 
+import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,17 +17,17 @@ public class Employee extends Person implements Hired, Comparable<Employee>{
     private static float holidayBonus = 1000f;
     private Set<Operation> operations = new HashSet<>();
 
-    private final BehaviorSubject<Wage> wageObservable = BehaviorSubject.create();
-    private final BehaviorSubject<Contract> contactObservable = BehaviorSubject.create();
+    private final BehaviorSubject<Wage> wageSubject = BehaviorSubject.create();
+    private final BehaviorSubject<Contract> contactSubject = BehaviorSubject.create();
 
     public Employee(String firstName, String lastName) {
         super(firstName, lastName);
     }
 
     public void setWage(Wage wage) {
-        wageObservable.onNext(this.wage);
+        wageSubject.onNext(this.wage);
         this.wage = wage;
-        wageObservable.onNext(wage);
+        wageSubject.onNext(wage);
     }
 
     @Override
@@ -95,5 +96,9 @@ public class Employee extends Person implements Hired, Comparable<Employee>{
         if(wage != null)
             return (long) wage.basic + l;
         return l;
+    }
+
+    Observable<Wage> getWageObservable() {
+        return wageSubject;
     }
 }
