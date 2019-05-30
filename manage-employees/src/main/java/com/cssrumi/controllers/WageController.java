@@ -39,6 +39,9 @@ public class WageController {
                 case "a":
                     displayAllByLastName();
                     break;
+                case "s":
+                    setWageById();
+                    break;
                 default:
                     break;
             }
@@ -79,5 +82,13 @@ public class WageController {
             WageView.displayAll(employeeService.findAll());
         else
             SessionView.unauthorized();
+    }
+
+    public void setWageById() {
+        if(sessionService.isAuthorized()) {
+            Long id = EmployeeView.enterId();
+            employeeService.findById(id).
+                    setWage(WageView.setWage());
+        } else SessionView.unauthorized();
     }
 }

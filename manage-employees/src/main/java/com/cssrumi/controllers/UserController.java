@@ -34,7 +34,8 @@ public class UserController {
                 userService
                         .findAll()
                         .stream()
-                        .map(User::getLogin).collect(Collectors.toSet())
+                        .map(User::getLogin)
+                        .collect(Collectors.toSet())
         );
     }
 }

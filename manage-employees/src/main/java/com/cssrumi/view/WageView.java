@@ -15,6 +15,7 @@ public class WageView {
                 "Find by id - i\n" +
                 "Find by last name - l\n" +
                 "Find all by last name - a\n" +
+                "Set Wage by id - s\n" +
                 "Enter to return"
         );
         System.out.print("Your choice: ");
@@ -37,5 +38,19 @@ public class WageView {
                     "Other: " + wage.other
             );
         else System.out.println("Wage is empty");
+    }
+
+    public static Wage setWage() {
+        Wage wage = new Wage(0);
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Enter basic: ");
+        wage.basic = scan.nextFloat();
+        System.out.println("Enter bonus: ");
+        wage.bonus = scan.nextFloat();
+        System.out.println("Enter other: ");
+        wage.other = scan.nextFloat();
+
+        return wage;
     }
 }
