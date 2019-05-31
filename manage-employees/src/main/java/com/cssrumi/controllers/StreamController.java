@@ -26,27 +26,31 @@ public class StreamController implements MenuController {
     public void menu() {
         String choice = StreamView.menu();
         switch (choice.toLowerCase()) {
-            case "d":
+            case "q":
                 displayAllSortedByName();
                 break;
-            case "i":
-                App.getEmployeeController().displayAll();
+            case "w":
+                displayAllFullNames();
                 break;
-            case "l":
+            case "e":
                 displayAllBeginningWith('P');
                 break;
-            case "a":
+            case "r":
                 displayAllWithWageBiggerThan(5000f);
                 break;
-            case "f":
+            case "t":
                 displaySumOfAll();
                 break;
-            case "s":
+            case "y":
                 displayAllSortedByWage();
                 break;
             default:
                 break;
         }
+    }
+
+    private void displayAllFullNames() {
+        EmployeeView.displayAllFullName(employeeService.findAll());
     }
 
     private void displayAllSortedByWage() {

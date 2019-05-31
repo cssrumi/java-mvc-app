@@ -33,6 +33,12 @@ public class EmployeeView {
         }
     }
 
+    public static void displayAllFullName(Iterable<Employee> employeeSet) {
+        for (Employee employee : employeeSet) {
+            System.out.println(employee);
+        }
+    }
+
     public static Long enterId() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter id: ");

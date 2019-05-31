@@ -13,6 +13,7 @@ public class MainView {
                     "Operation - o\n" +
                     "User - u\n" +
                     "Logout - l\n" +
+                    "Stream API (LINQ) - s\n" +
                     "Exit - x");
         else
             System.out.println(
@@ -22,6 +23,7 @@ public class MainView {
                     "Operation - o\n" +
                     "User - u\n" +
                     "Login - l\n" +
+                    "Stream API (LINQ) - s\n" +
                     "Exit - x");
         System.out.print("Choice: ");
         return scan.nextLine();
