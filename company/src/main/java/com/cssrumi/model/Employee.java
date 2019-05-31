@@ -1,6 +1,6 @@
 package com.cssrumi.model;
 
-import com.cssrumi.Listener.Listener;
+import com.cssrumi.listener.Listener;
 import lombok.Getter;
 import lombok.Setter;
 

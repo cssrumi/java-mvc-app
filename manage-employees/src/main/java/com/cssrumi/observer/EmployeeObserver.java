@@ -1,4 +1,4 @@
-package com.cssrumi.Observer;
+package com.cssrumi.observer;
 
 import com.cssrumi.App;
 import com.cssrumi.services.EmployeeService;

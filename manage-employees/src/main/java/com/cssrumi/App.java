@@ -1,6 +1,6 @@
 package com.cssrumi;
 
-import com.cssrumi.Observer.EmployeeObserver;
+import com.cssrumi.observer.EmployeeObserver;
 import com.cssrumi.bootstrap.DataLoader;
 import com.cssrumi.controllers.*;
 import com.cssrumi.services.*;
