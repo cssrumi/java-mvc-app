@@ -1,5 +1,6 @@
 package com.cssrumi;
 
+import com.cssrumi.Observer.EmployeeObserver;
 import com.cssrumi.bootstrap.DataLoader;
 import com.cssrumi.controllers.*;
 import com.cssrumi.services.*;
@@ -19,17 +20,23 @@ public class App {
     private static OperationController operationController;
     private static WageController wageController;
     private static SessionController sessionController;
+    private static ContractController contractController;
 
     private static boolean running = true;
 
     public static void main(String[] args) {
         initServices();
         initControllers();
+        initObservers();
 
         DataLoader dataLoader = new DataLoader();
         dataLoader.init();
 
         mainLoop();
+    }
+
+    private static void initObservers() {
+        EmployeeObserver employeeObserver = new EmployeeObserver();
     }
 
     private static void mainLoop() {
@@ -52,6 +59,7 @@ public class App {
         wageController = new WageController();
         sessionController = new SessionController();
         mainController = new MainController();
+        contractController = new ContractController();
     }
 
     public static void exit() {
@@ -97,4 +105,6 @@ public class App {
     public static SessionController getSessionController() {
         return sessionController;
     }
+
+    public static ContractController getContractController() { return contractController; }
 }

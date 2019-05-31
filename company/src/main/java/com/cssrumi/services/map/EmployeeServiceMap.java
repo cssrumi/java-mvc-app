@@ -1,9 +1,13 @@
 package com.cssrumi.services.map;
 
+import com.cssrumi.Listener.Listener;
+import com.cssrumi.Listener.ListenerImpl;
 import com.cssrumi.model.Employee;
 import com.cssrumi.model.factories.EmployeeFactory;
 import com.cssrumi.services.EmployeeService;
 import com.cssrumi.services.OperationService;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Map;
 import java.util.Objects;
@@ -12,6 +16,8 @@ import java.util.stream.Collectors;
 
 public class EmployeeServiceMap extends AbstractMapService<Employee, Long> implements EmployeeService {
 
+    @Setter @Getter
+    private Listener listener = new ListenerImpl();
     private OperationService operationService;
 
     public EmployeeServiceMap(OperationService operationService) {
@@ -42,6 +48,9 @@ public class EmployeeServiceMap extends AbstractMapService<Employee, Long> imple
                         operation.setId(operationService.save(operation).getId());
                     }
                 });
+            }
+            if (object.getListener() == null) {
+                object.setListener(listener);
             }
             return super.save(object);
         } else return null;

@@ -18,7 +18,11 @@ public class EmployeeView {
                 "Enter to return"
         );
         System.out.print("Your choice: ");
-        return scan.next();
+        return scan.nextLine();
+    }
+
+    public static void log(String log) {
+        System.out.println(log);
     }
 
     public static void display(Employee employee) {

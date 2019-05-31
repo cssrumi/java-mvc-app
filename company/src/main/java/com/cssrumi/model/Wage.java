@@ -11,4 +11,9 @@ public class Wage {
         bonus = 0f;
         other = 0f;
     }
+
+    @Override
+    public String toString() {
+        return "{Basic: " + basic + " Bonus: " + bonus + " Other: " + other + "}";
+    }
 }

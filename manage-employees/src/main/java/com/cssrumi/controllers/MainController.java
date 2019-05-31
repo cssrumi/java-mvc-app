@@ -25,6 +25,9 @@ public class MainController {
             case "w":
                 App.getWageController().menu();
                 break;
+            case "c":
+                App.getContractController().menu();
+                break;
             case "o":
                 App.getOperationController().menu();
                 break;

@@ -9,10 +9,10 @@ public class SessionView {
         Scanner scan = new Scanner(System.in);
 
         System.out.print("login: ");
-        map.put("login", scan.next());
+        map.put("login", scan.nextLine());
 
         System.out.print("password: ");
-        map.put("password", scan.next());
+        map.put("password", scan.nextLine());
 
         return map;
     }

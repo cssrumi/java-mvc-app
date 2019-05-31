@@ -9,6 +9,7 @@ public class MainView {
             System.out.println(
                     "Employee - e\n" +
                     "Wage - w\n" +
+                    "Contract - c\n" +
                     "Operation - o\n" +
                     "User - u\n" +
                     "Logout - l\n" +
@@ -17,6 +18,7 @@ public class MainView {
             System.out.println(
                     "Employee - e\n" +
                     "Wage - w\n" +
+                    "Contract - c\n" +
                     "Operation - o\n" +
                     "User - u\n" +
                     "Login - l\n" +

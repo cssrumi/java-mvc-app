@@ -1,5 +1,6 @@
 package com.cssrumi.model;
 
+import com.cssrumi.Listener.Listener;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,15 +9,40 @@ import java.util.Set;
 
 @Setter
 @Getter
-public class Employee extends Person implements Hired, Comparable<Employee>{
+public class Employee extends Person implements Hired, Comparable<Employee> {
 
     private Wage wage;
     private Contract contract;
     private static float holidayBonus = 1000f;
     private Set<Operation> operations = new HashSet<>();
+    private Listener listener;
 
     public Employee(String firstName, String lastName) {
         super(firstName, lastName);
+    }
+
+    public void setWage(Wage wage) {
+        if (listener != null)
+            listener.notifyListeners(
+                    this,
+                    Wage.class.toString(),
+                    this.wage,
+                    this.wage = wage
+            );
+        else
+            this.wage = wage;
+    }
+
+    public void setContract(Contract contract) {
+        if (listener != null)
+            listener.notifyListeners(
+                    this,
+                    Contract.class.toString(),
+                    this.contract,
+                    this.contract = contract
+            );
+        else
+            this.contract = contract;
     }
 
     @Override
@@ -34,9 +60,9 @@ public class Employee extends Person implements Hired, Comparable<Employee>{
         if ((getWage() == null) || (o.getWage() == null))
             throw new IllegalArgumentException("Wage can't be unset");
         boolean isGreater = getWage().basic > o.getWage().basic;
-        if(isGreater)
+        if (isGreater)
             return 1;
-        if(getWage().basic == o.getWage().basic)
+        if (getWage().basic == o.getWage().basic)
             return 0;
         else return -1;
     }
@@ -58,31 +84,31 @@ public class Employee extends Person implements Hired, Comparable<Employee>{
     }
 
     public double toDouble() {
-        if(wage != null)
+        if (wage != null)
             return (double) wage.basic;
         return 0.0;
     }
 
     public float add(float f) {
-        if(wage != null)
+        if (wage != null)
             return wage.basic + f;
         return f;
     }
 
     public double add(double d) {
-        if(wage != null)
+        if (wage != null)
             return wage.basic + d;
         return d;
     }
 
     public int add(int i) {
-        if(wage != null)
+        if (wage != null)
             return (int) wage.basic + i;
         return i;
     }
 
     public long add(long l) {
-        if(wage != null)
+        if (wage != null)
             return (long) wage.basic + l;
         return l;
     }

@@ -1,6 +1,7 @@
 package com.cssrumi.controllers;
 
 import com.cssrumi.App;
+import com.cssrumi.model.User;
 import com.cssrumi.services.SessionService;
 import com.cssrumi.services.UserService;
 import com.cssrumi.view.SessionView;
@@ -28,7 +29,6 @@ public class SessionController {
             sessionService.login();
             SessionView.authorized();
         } else {
-            sessionService.login();
             SessionView.unauthorized();
         }
     }
