@@ -1,24 +1,39 @@
 package com.cssrumi.model;
 
 import com.cssrumi.listener.Listener;
+import com.cssrumi.services.map.NameConsumer;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Consumer;
 
 @Setter
 @Getter
-public class Employee extends Person implements Hired, Comparable<Employee> {
+public class Employee extends Person implements Hired, Comparable<Employee>, NameConsumer {
 
     private Wage wage;
     private Contract contract;
     private static float holidayBonus = 1000f;
     private Set<Operation> operations = new HashSet<>();
     private Listener listener;
+    private Consumer<String> nameConsumer;
 
     public Employee(String firstName, String lastName) {
         super(firstName, lastName);
+    }
+
+    public void setFirstName(String firstName) {
+        super.setFirstName(firstName);
+        if (nameConsumer != null)
+            nameConsumer.accept(firstName);
+    }
+
+    public void setLastName(String lastName) {
+        super.setLastName(lastName);
+        if (nameConsumer != null)
+            nameConsumer.accept(lastName);
     }
 
     public void setWage(Wage wage) {
@@ -87,6 +102,14 @@ public class Employee extends Person implements Hired, Comparable<Employee> {
         if (wage != null)
             return (double) wage.basic;
         return 0.0;
+    }
+
+    public float add(Employee employee) {
+        if (wage == null && employee.wage == null)
+            return 0f;
+        else if (employee.wage != null)
+            return add(employee.wage.basic);
+        else return wage.basic;
     }
 
     public float add(float f) {

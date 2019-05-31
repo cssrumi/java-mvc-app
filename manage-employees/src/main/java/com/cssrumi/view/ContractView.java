@@ -2,7 +2,6 @@ package com.cssrumi.view;
 
 import com.cssrumi.model.Contract;
 import com.cssrumi.model.Employee;
-import com.cssrumi.model.Wage;
 
 import java.util.Scanner;
 import java.util.Set;
@@ -62,10 +61,6 @@ public class ContractView {
         stringBuffer.setLength(0);
 
         return scan.nextInt();
-    }
-
-    public static void Error(String message) {
-        System.out.println("Error: " + message);
     }
 
 }

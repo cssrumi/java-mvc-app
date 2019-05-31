@@ -8,7 +8,7 @@ import com.cssrumi.view.EmployeeView;
 import com.cssrumi.view.SessionView;
 import com.cssrumi.view.WageView;
 
-public class WageController {
+public class WageController implements MenuController {
 
     private EmployeeService employeeService;
     private SessionService sessionService;
@@ -23,6 +23,7 @@ public class WageController {
         this.sessionService = sessionService;
     }
 
+    @Override
     public void menu() {
         if(sessionService.isAuthorized()) {
             String choice = WageView.menu();

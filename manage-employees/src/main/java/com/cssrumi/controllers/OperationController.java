@@ -8,7 +8,7 @@ import com.cssrumi.view.EmployeeView;
 import com.cssrumi.view.OperationView;
 import com.cssrumi.view.SessionView;
 
-public class OperationController {
+public class OperationController implements MenuController {
 
     private EmployeeService employeeService;
     private SessionService sessionService;
@@ -27,6 +27,7 @@ public class OperationController {
         this.operationService = operationService;
     }
 
+    @Override
     public void menu() {
         if(sessionService.isAuthorized()) {
             String choice = OperationView.menu();

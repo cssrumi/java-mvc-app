@@ -12,16 +12,24 @@ import lombok.Setter;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class EmployeeServiceMap extends AbstractMapService<Employee, Long> implements EmployeeService {
 
     @Setter @Getter
     private Listener listener = new ListenerImpl();
+    @Getter
+    private Consumer<String> consumer;
     private OperationService operationService;
 
     public EmployeeServiceMap(OperationService operationService) {
         this.operationService = operationService;
+    }
+
+    public void setNameConsumer(Consumer<String> consumer) {
+        this.consumer = consumer;
+        findAll().forEach(employee -> setNameConsumer(consumer));
     }
 
     @Override
@@ -49,9 +57,10 @@ public class EmployeeServiceMap extends AbstractMapService<Employee, Long> imple
                     }
                 });
             }
-            if (object.getListener() == null) {
+            if (object.getListener() == null && listener != null)
                 object.setListener(listener);
-            }
+            if (object.getNameConsumer() == null && consumer != null)
+                object.setNameConsumer(consumer);
             return super.save(object);
         } else return null;
     }

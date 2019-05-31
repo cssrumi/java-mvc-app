@@ -8,6 +8,8 @@ import com.cssrumi.services.map.EmployeeServiceMap;
 import com.cssrumi.services.map.OperationServiceMap;
 import com.cssrumi.services.map.UserServiceMap;
 
+import java.util.function.Consumer;
+
 public class App {
 
     private static OperationService operationService;
@@ -21,18 +23,26 @@ public class App {
     private static WageController wageController;
     private static SessionController sessionController;
     private static ContractController contractController;
+    private static StreamController streamController;
 
     private static boolean running = true;
 
     public static void main(String[] args) {
         initServices();
         initControllers();
+
         initObservers();
+        initConsumers();
 
         DataLoader dataLoader = new DataLoader();
         dataLoader.init();
 
         mainLoop();
+    }
+
+    private static void initConsumers() {
+        Consumer<String> consumer = Logger::log;
+        getEmployeeService().setNameConsumer(consumer);
     }
 
     private static void initObservers() {
@@ -60,6 +70,7 @@ public class App {
         sessionController = new SessionController();
         mainController = new MainController();
         contractController = new ContractController();
+        streamController = new StreamController();
     }
 
     public static void exit() {
@@ -107,4 +118,9 @@ public class App {
     }
 
     public static ContractController getContractController() { return contractController; }
+
+    public static StreamController getStreamController() {
+        return streamController;
+    }
+
 }

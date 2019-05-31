@@ -4,7 +4,7 @@ import com.cssrumi.App;
 import com.cssrumi.services.SessionService;
 import com.cssrumi.view.MainView;
 
-public class MainController {
+public class MainController implements MenuController {
 
     private SessionService sessionService;
 
@@ -34,6 +34,9 @@ public class MainController {
             case "u":
                 App.getUserController().menu();
                 break;
+            case "s":
+                App.getStreamController().menu();
+                break;
             case "l":
                 if(sessionService.isAuthorized())
                     sessionService.logout();
@@ -45,5 +48,10 @@ public class MainController {
             default:
                 break;
         }
+    }
+
+    @Override
+    public void menu() {
+        mainMenu();
     }
 }

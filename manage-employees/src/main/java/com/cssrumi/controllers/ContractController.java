@@ -1,6 +1,7 @@
 package com.cssrumi.controllers;
 
 import com.cssrumi.App;
+import com.cssrumi.Logger;
 import com.cssrumi.model.Contract;
 import com.cssrumi.model.Employee;
 import com.cssrumi.services.EmployeeService;
@@ -10,7 +11,7 @@ import com.cssrumi.view.EmployeeView;
 import com.cssrumi.view.SessionView;
 import com.cssrumi.view.WageView;
 
-public class ContractController {
+public class ContractController implements MenuController {
 
     private EmployeeService employeeService;
     private SessionService sessionService;
@@ -25,6 +26,7 @@ public class ContractController {
         this.sessionService = sessionService;
     }
 
+    @Override
     public void menu() {
         if(sessionService.isAuthorized()) {
             String choice = ContractView.menu();
@@ -95,7 +97,7 @@ public class ContractController {
                 employeeService.findById(id).
                         setContract(Contract.values()[contractId]);
             else
-                ContractView.Error("Invalid Contract id - " + contractId);
+                Logger.error("Invalid Contract id - " + contractId);
         } else SessionView.unauthorized();
     }
 }

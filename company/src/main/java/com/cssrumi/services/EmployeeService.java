@@ -2,10 +2,11 @@ package com.cssrumi.services;
 
 import com.cssrumi.listener.Listener;
 import com.cssrumi.model.Employee;
+import com.cssrumi.services.map.NameConsumer;
 
 import java.util.Set;
 
-public interface EmployeeService extends CrudService<Employee, Long> {
+public interface EmployeeService extends CrudService<Employee, Long>, NameConsumer {
 
     Employee findByLastName(String lastName);
 

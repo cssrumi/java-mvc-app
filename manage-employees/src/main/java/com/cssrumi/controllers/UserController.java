@@ -7,7 +7,7 @@ import com.cssrumi.view.UserView;
 
 import java.util.stream.Collectors;
 
-public class UserController {
+public class UserController implements MenuController {
     private UserService userService;
 
     public UserController() {
@@ -18,6 +18,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    @Override
     public void menu() {
         String choice = UserView.menu();
         switch (choice.toLowerCase()) {
